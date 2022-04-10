@@ -1,0 +1,12 @@
+require('dotenv').config({ path: '.env' });
+require('../models/index.model').connect();
+const cluster = require('../helpers/cluster.helper').clusterise();
+
+if (cluster.clusterised == true) {
+    if (cluster.isMaster == false) {
+        require('../index');
+    }
+} else if (cluster.clusterised == false) {
+    console.log('Starting app in non-cluster mode');
+    require('../index');
+}
