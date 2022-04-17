@@ -36,7 +36,6 @@ exports.connectWallet = async (req, res, next) => {
             address: encrypt(userRing.address),
             name: userRing.meta.name
         };
-        console.log( Uint8Array.from(JSON.parse(JSON.stringify(Array.from(userRing.publicKey)))))
 
         await Fire.transfer(userRing.address, user.pendingCoins);
         user.pendingCoins = 0;
