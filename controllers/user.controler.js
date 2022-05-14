@@ -37,7 +37,9 @@ exports.connectWallet = async (req, res, next) => {
             name: userRing.meta.name
         };
 
-        await Fire.transfer(userRing.address, user.pendingCoins);
+        if (user.pendingCoins > 0) {
+            await Fire.transfer(userRing.address, user.pendingCoins);
+        }
         user.pendingCoins = 0;
 
         await user.save();
@@ -77,7 +79,9 @@ exports.getBalance = async (req, res, next) => {
         if (!user.wallet) {
             throw new Error('Wallet not connected');
         }
-        const wallet = await Fire.getBalance(Uint8Array.from(JSON.parse(decrypt(user.wallet.publicKey))));
+        const wallet = await Fire.getBalance(
+            Uint8Array.from(JSON.parse(decrypt(user.wallet.publicKey)))
+        );
 
         res.status(200).json({
             wallet

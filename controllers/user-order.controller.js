@@ -9,7 +9,9 @@ const Fire = require('../helpers/5ire.helper');
 exports.createUserOrder = async (req, res, next) => {
     try {
         const items = await Item.find({
-            $in: req.body.items.map((item) => item._id)
+            _id: {  
+                $in: req.body.items.map((item) => item._id)
+            }
         });
         if (items.length == 0) {
             throw new NotFoundError('Items not found');
@@ -98,7 +100,9 @@ exports.myUserOrders = async (req, res, next) => {
 
 exports.allUserOrders = async (req, res, next) => {
     try {
-        const orders = await UserOrder.find({...req.query}).sort({ createdAt: -1 });
+        const orders = await UserOrder.find({ ...req.query }).sort({
+            createdAt: -1
+        });
 
         res.status(200).json({
             orders

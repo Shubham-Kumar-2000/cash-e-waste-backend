@@ -53,8 +53,8 @@ exports.transfer = async (address, amount) => {
     const keyring = new Keyring({ type: 'sr25519' });
     const us = keyring.addFromUri(process.env.FIRE_PHRASE);
     const txHash = await api.tx.balances
-        .transfer(address, `${amount}`)
-        .signAndSend(us);
+      .transfer(address, `${amount * 1000000000000000}`)
+      .signAndSend(us);
     return txHash;
 };
 

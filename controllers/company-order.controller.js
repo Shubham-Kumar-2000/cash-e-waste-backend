@@ -106,7 +106,9 @@ exports.myCompanyOrders = async (req, res, next) => {
 
 exports.allCompanyOrders = async (req, res, next) => {
     try {
-        const orders = await CompanyOrder.find({...req.query}).sort({ createdAt: -1 });
+        const orders = await CompanyOrder.find({ ...req.query }).sort({
+            createdAt: -1
+        });
 
         res.status(200).json({
             orders
