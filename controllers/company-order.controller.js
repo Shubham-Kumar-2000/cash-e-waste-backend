@@ -65,6 +65,7 @@ exports.completeCompanyOrder = async (req, res, next) => {
         res.status(200).json({
             err: false
         });
+        console.log(JSON.stringify(req.body.payload.order));
         const order = await CompanyOrder.getPendingById(
             req.body.payload.order.entity.receipt
         );
@@ -84,11 +85,12 @@ exports.completeCompanyOrder = async (req, res, next) => {
             )
         );
 
-        res.status(200).json({
-            order
-        });
+        // res.status(200).json({
+        //     order
+        // });
     } catch (e) {
-        next(e);
+        // next(e);
+        console.log({ e });
     }
 };
 
