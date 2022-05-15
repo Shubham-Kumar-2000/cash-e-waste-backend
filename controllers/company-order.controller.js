@@ -65,9 +65,9 @@ exports.completeCompanyOrder = async (req, res, next) => {
         res.status(200).json({
             err: false
         });
-        console.log(JSON.stringify(req.body.payload.order));
+        // console.log(JSON.stringify(req.body.payload.order));
         const order = await CompanyOrder.getPendingById(
-            req.body.payload.order.entity.receipt
+            req.body.payload.order.entity.id
         );
         if (!order) {
             throw new NotFoundError('Order not found');

@@ -28,7 +28,7 @@ const companyOrderSchema = new mongoose.Schema(
 
 companyOrderSchema.statics.getPendingById = (id) => {
     return CompanyOrder.findOne({
-        _id: id,
+        orderId: id,
         status: configConsts.COMPANY_ORDER_STATUS.PENDING
     }).populate('userId');
 };
