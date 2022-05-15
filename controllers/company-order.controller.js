@@ -8,7 +8,9 @@ const CompanyOrder = require('../models/company-orders.model');
 exports.createCompanyOrder = async (req, res, next) => {
     try {
         const items = await Item.find({
-            $in: req.body.items.map((item) => item._id)
+            _id: {
+                $in: req.body.items.map((item) => item._id)
+            }
         });
         if (items.length == 0) {
             throw new NotFoundError('Items not found');

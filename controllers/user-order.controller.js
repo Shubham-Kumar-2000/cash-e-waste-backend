@@ -9,7 +9,7 @@ const Fire = require('../helpers/5ire.helper');
 exports.createUserOrder = async (req, res, next) => {
     try {
         const items = await Item.find({
-            _id: {  
+            _id: {
                 $in: req.body.items.map((item) => item._id)
             }
         });
