@@ -5,6 +5,7 @@ const instance = new RazorPay({
 });
 
 exports.generateOrder = (amount, currency, receipt) => {
+    console.log(amount, currency, receipt);
     return instance.orders.create({
         amount: amount * 100, // amount in the smallest currency unit
         currency,
