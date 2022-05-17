@@ -1,4 +1,3 @@
-const constants = require('../config/constants');
 const AuthenticationError = require('../errors/authentication.error');
 
 exports.ensurePermission = (permission) => {

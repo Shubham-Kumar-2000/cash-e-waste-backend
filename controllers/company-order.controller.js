@@ -60,7 +60,7 @@ exports.createCompanyOrder = async (req, res, next) => {
     }
 };
 
-exports.completeCompanyOrder = async (req, res, next) => {
+exports.completeCompanyOrder = async (req, res) => {
     try {
         res.status(200).json({
             err: false
